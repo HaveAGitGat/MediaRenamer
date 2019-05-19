@@ -1,3 +1,5 @@
+
+//Dependencies
 var fs = require("fs");
 var ffprobeStaticPath = require("ffprobe-static").path;
 var ffprobe = require("ffprobe");
@@ -8,7 +10,7 @@ var path = require("path");
 inputPathStem = "C:\\Users\\HaveAGitGat\\Desktop\\Test Temp2";
 
 
-// 3 try/catch blocks used while traversing in-case of invalid characters or untraversable folders
+// 3 try/catch blocks used while traversing in case of invalid characters or untraversable folders
 try {
   traverseDir(inputPathStem);
 } catch (err) {}
@@ -35,15 +37,14 @@ function traverseDir(inputPathStem) {
             //FFprobe JSON response logged to console, useful for determining file rename rules
             console.log(info);
             //Set file renaming rules based on properties
-            //For example, replace '265' in file titles which refer to files which are actually enconded in h264.
+            //For example, replace '265' in file titles which refer to files which are actually encoded in h264.
             if (info.streams[0]["codec_name"] == "h264") {
               if (thisFile.includes("265")) {
                 thisFileNew = thisFile.replace("265", "264");
                 fs.renameSync(thisFile, thisFileNew);
               }
 
-
-
+              
             }
           }
         );
