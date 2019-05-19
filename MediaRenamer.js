@@ -13,7 +13,7 @@ inputPathStem = "C:\\Users\\HaveAGitGat\\Desktop\\Test Temp2";
 // 3 try/catch blocks used while traversing in case of invalid characters or untraversable folders
 try {
   traverseDir(inputPathStem);
-} catch (err) {}
+} catch (err) {console.log("Error traversing folder:"+inputPathStem)}
 
 function traverseDir(inputPathStem) {
   fs.readdirSync(inputPathStem).forEach(file => {
@@ -23,7 +23,7 @@ function traverseDir(inputPathStem) {
       if (fs.lstatSync(fullPath).isDirectory()) {
         try {
           traverseDir(fullPath);
-        } catch (err) {}
+        } catch (err) {console.log("Error traversing folder:"+fullPath)}
       } else {
         var thisFile = fullPath + "";
 
@@ -43,9 +43,13 @@ function traverseDir(inputPathStem) {
                 thisFileNew = thisFile.replace("265", "264");
                 fs.renameSync(thisFile, thisFileNew);
               }
-
-              
             }
+
+
+
+
+
+
           }
         );
       }
